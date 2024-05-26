@@ -63,12 +63,14 @@ const editLink = reactive({
 const links = computed(() => {
   let _links = [];
   if (Array.isArray(props.modelValue)) _links = [...props.modelValue];
-  if (!props.modelValue[editLink.index] && editLink.data) _links = [..._links, editLink.data];
-  return _links;
+  if (Number.isInteger(editLink.index) && editLink.data) {
+    if (!props.modelValue?.[editLink.index]) _links = [..._links, editLink.data];
+    else _links[editLink.index] = editLink.data;
+  }  return _links;
 })
 
 
-const canAddLink = computed(() => !editLink.data && props.modelValue.length < 10);
+const canAddLink = computed(() => !editLink.data && (props.modelValue?.length || 0) < 10);
 
 const addLinkHandle = () => {
   editLink.index = links.value.length;

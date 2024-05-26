@@ -7,7 +7,7 @@ const state = () => ({
     businessCode: null,
 
     // Сообщения в диалоге
-    messages: [],//{type: <user|assistant>, text}
+    messages: [],//{type: <user|assistant|widget>, text}
 
     // Виджет для вызова
     widgetToCall: null

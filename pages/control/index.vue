@@ -60,9 +60,10 @@
       />
 
       <div class="control-page__subtitle">Ссылки</div>
-
       <links v-model="businessInfo.links"/>
 
+      <div class="control-page__subtitle">Ваши продукты</div>
+      <products v-model="businessInfo.products"/>
     </div>
 
     <div class="pretty-box">
@@ -97,6 +98,7 @@ import BaseTextarea from "../../components/base/BaseTextarea";
 import BaseSelect from "../../components/base/BaseSelect";
 import Links from "../../components/common/control/links";
 import Widgets from "../../components/common/control/widgets";
+import Products from "../../components/common/control/products";
 
 definePageMeta({
   middleware: "auth"

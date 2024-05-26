@@ -1,5 +1,5 @@
 <template>
-  <report-widget v-if="widgetName === 'report'" :show="show || _show" @update:show="s => show = s"/>
+  <report-widget v-if="widgetName === 'report'" :show="show" @update:show="s => show = s"/>
 </template>
 
 <script setup>
