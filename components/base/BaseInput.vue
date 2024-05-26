@@ -129,6 +129,7 @@ const isMasked = computed(() => !!dataMaska.value);
 // Тип ввода
 const inputType = computed(() => {
   if (props.password) return "password";
+  if (props.number) return "number";
   return "text";
 })
 </script>

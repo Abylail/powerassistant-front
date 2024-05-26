@@ -4,7 +4,10 @@
       :style="{background}"
   >
     <div class="product-view__main-info">
-      <span>{{ props.product.name }}</span>
+      <div>
+        {{ props.product.name }} -
+        <span>{{ props.product.price }}{{ props.product.priceCurrency }}</span>
+      </div>
       <base-icon class="product-view__icon" name="mdi-cube-scan"/>
     </div>
     <base-cut-text
@@ -51,7 +54,7 @@ const background = computed(() => props.product.image ? `url(${props.product.ima
     justify-content: space-between;
     width: 100%;
     color: white;
-    font-weight: bold;
+    font-weight: 500;
   }
 
   &__description {

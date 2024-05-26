@@ -17,9 +17,18 @@
       </a>
     </div>
 
+    <div class="pretty-box__divider" v-if="props.info.links?.length"/>
+
     <link-view
         v-for="linkInfo in props.info.links"
         :link="linkInfo"
+    />
+
+    <div class="pretty-box__divider" v-if="props.info.products?.length"/>
+
+    <product-view
+        v-for="productInfo in props.info.products"
+        :product="productInfo"
     />
   </div>
 </template>
@@ -32,6 +41,7 @@ import BaseButton from "../../base/BaseButton";
 import {useRouter} from "nuxt/app";
 import Widgets from "../widgets/widgets";
 import LinkView from "./linkView";
+import ProductView from "./productView";
 
 const props = defineProps({
   info: {
@@ -95,6 +105,7 @@ const goChat = () => {
   &__description {
     text-align: center;
     white-space: pre-wrap;
+    line-height: 1;
   }
 
   &__short-links {

@@ -5,7 +5,7 @@
       <div class="typewriter-container main-page__title-container">
         <h1 class="main-page__title typewriter-text">Power Assistant</h1>
       </div>
-      <p class="main-page__description">Ваш личный ассистент на базе искусственного интеллекта.</p>
+      <p class="main-page__description">ИИ чат для вашего бизнеса</p>
     </div>
 
     <business-widget

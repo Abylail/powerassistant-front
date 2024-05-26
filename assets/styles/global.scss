@@ -183,21 +183,25 @@ h1, h2, h3, h4, p {
   position: relative;
   z-index: 1;
   background-color: $color--background;
-  padding: $side-space;
-  width: calc(100% - 2*#{$side-space});
+  padding: 1rem;
+  width: calc(100% - 2rem);
   max-width: $max-width;
-  border-radius: 2rem;
+  border-radius: 1rem;
   margin-left: auto !important;
   margin-right: auto !important;
   color: $color--black;
   margin-bottom: 2rem;
 
   & > *:not(:last-child) {
-    margin-bottom: $side-space;
+    margin-bottom: 1rem;
   }
 
   &__title {
-    font-size: 1.8rem;
+    font-size: $fs--big-title;
     font-weight: bolder;
+  }
+
+  &__divider {
+    padding: 0.5rem 0;
   }
 }

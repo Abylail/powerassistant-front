@@ -26,6 +26,7 @@
         <base-input
             title="Цена"
             v-model="editProduct.data.price"
+            number
         />
         <base-input
             title="Валюта"
