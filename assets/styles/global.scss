@@ -1,0 +1,210 @@
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: $color--black;
+  background-color: black;
+}
+
+html, body, #__nuxt{
+  height: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+a, button, input, textarea {
+  padding: 0;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  background: none;
+  &:active {
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+// Шрифты
+@font-face {
+  font-family: 'Montserrat';
+  src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+  font-display: swap;
+}
+
+
+// Вспомогательные классы
+
+// Тайтл
+.title {
+  font-size: 20px;
+  line-height: 28px;
+  margin: 5px 0;
+}
+
+// Чипс
+.chip {
+  display: inline;
+  white-space: nowrap;
+  color: $color--blue-dark;
+  background: $color--gray-light;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  &:not(:last-child) {margin-right: 4px;}
+  border-radius: 16px;
+  font-size: $fs--mini;
+  transition: $transition;
+
+  &--blue {
+    color: white;
+    white-space: nowrap;
+    background: $color--blue;
+  }
+
+  &--outlined {
+    display: inline;
+    white-space: nowrap;
+    color: $color--blue-dark;
+    border: 1px solid $color--blue-dark;
+    padding: 2px 8px;
+    &:not(:last-child) {margin-right: 4px;}
+    margin-bottom: 4px;
+    border-radius: 16px;
+    font-size: $fs--mini;
+    transition: $transition;
+  }
+}
+
+// Задний фон синяя иллююстрация
+.background-blue-illustration {
+  background-image: url('~/assets/images/background-blue-illustration.svg');
+  background-size: cover;
+  background-color: $color--blue;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.container {
+  width: calc(100% - 2*#{$side-space});
+  max-width: $max-width;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  position: relative;
+  z-index: 1;
+  &--white {
+    box-sizing: content-box !important;
+    width: calc(100% - 2*#{$side-space});
+    padding: $side-space;
+    background-color: white;
+  }
+}
+
+.disabled {
+  opacity: .5;
+  pointer-events: none;
+}
+
+.widget {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 $side-space;
+    height: 50vh;
+  }
+
+  &__actions {
+    margin-top: 2rem;
+    flex: 1;
+  }
+}
+
+.skeleton-loading {
+  background: linear-gradient(90deg, $color--gray 25%, $color--gray-light 50%, $color--gray 75%);
+  background-size: 200% 100%;
+  animation: skeletonAnimation 2s infinite ease-in-out;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.dot-divider {
+  display: inline-block;
+  height: 5px;
+  width: 5px;
+  border-radius: 100%;
+  background: #222222b0;
+  content: "";
+  margin: 0 8px;
+}
+
+@keyframes skeletonAnimation {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.typewriter-container {
+  display: inline-block;
+  width: 0; /* начальная ширина контейнера */
+  white-space: nowrap; /* убедиться, что текст находится в одной строке */
+  overflow: hidden; /* скрыть текст, который не умещается в контейнер */
+  border-right: 3px solid $color--neon; /* создать мигающий курсор */
+  animation: typing 4s steps(50, end) 1s forwards, blink-caret .75s step-end infinite;
+}
+
+.typewriter-text {
+  font-family: 'Courier New', Courier, monospace; /* Моноширинный шрифт для эффекта машинописи */
+  color: $color--neon;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #0ff; }
+}
+
+.pretty-box {
+  position: relative;
+  z-index: 1;
+  background-color: $color--background;
+  padding: $side-space;
+  width: calc(100% - 2*#{$side-space});
+  max-width: $max-width;
+  border-radius: 2rem;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  color: $color--black;
+  margin-bottom: 2rem;
+
+  & > *:not(:last-child) {
+    margin-bottom: $side-space;
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    font-weight: bolder;
+  }
+}
