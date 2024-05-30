@@ -2,7 +2,7 @@
   <a
       class="link-view"
       :href="props.link.link"
-      :style="{background}"
+      :style="{backgroundImage}"
       target="_blank"
   >
     <div class="link-view__info">
@@ -15,6 +15,7 @@
 <script setup>
 import {computed} from "vue";
 import BaseIcon from "../../base/BaseIcon";
+import {getImageUrl} from "~/helpers/methods";
 
 const props = defineProps({
   link: {
@@ -23,7 +24,7 @@ const props = defineProps({
   }
 })
 
-const background = computed(() => props.link.image ? `url(${props.link.image})` : null);
+const backgroundImage = computed(() => props.link.imageUrl ? `url(${getImageUrl(props.link.imageUrl)})` : null);
 </script>
 
 <style lang="scss" scoped>
@@ -32,8 +33,8 @@ const background = computed(() => props.link.image ? `url(${props.link.image})` 
   position: relative;
   box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
   margin: .5rem 0;
-  padding: 1rem;
-  min-height: 4rem;
+  padding: .5rem 1rem;
+  aspect-ratio: 4/1;
   border-radius: .5rem;
   background: $color--black;
   color: white;

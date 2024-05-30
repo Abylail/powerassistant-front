@@ -9,14 +9,28 @@
       <base-button type="default-light" full-width @click="saveInfo()">Сохранить</base-button>
     </div>
 
-    <div class="control-page__background"/>
+    <div class="control-page__background" :style="{backgroundImage: imageBackground}"/>
 
 
     <div class="control-page__box pretty-box">
 
-      <div class="control-page__avatar">
-        <span v-if="!businessInfo.avatar">{{ businessInfo.title?.[0] || "?" }}</span>
+      <div class="control-page__avatar" :style="{backgroundImage: imageAvatar}">
+        <span v-if="!businessInfo.avatar && !businessInfo.avatarBuffer">{{ businessInfo.title?.[0] || "?" }}</span>
       </div>
+
+      <base-image-input
+          title="Сменить главную картинку"
+          v-model="businessInfo.avatar"
+          v-model:buffer="businessInfo.avatarBuffer"
+          :show-preview="false"
+      />
+
+      <base-image-input
+          title="Сменить заднюю картинку"
+          v-model="businessInfo.backgroundImage"
+          v-model:buffer="businessInfo.backgroundImageBuffer"
+          :show-preview="false"
+      />
 
       <base-input
           title="Название страницы*"
@@ -103,6 +117,7 @@ import BaseSelect from "../../components/base/BaseSelect";
 import Links from "../../components/common/control/links";
 import Widgets from "../../components/common/control/widgets";
 import Products from "../../components/common/control/products";
+import {getImageUrl} from "~/helpers/methods";
 
 definePageMeta({
   middleware: "auth"
@@ -118,6 +133,18 @@ await Promise.all([
 const assistantRoles = computed(() => businessStore.getDict("assistantRole"))
 
 const businessInfo = ref(JSON.parse(JSON.stringify(businessStore.getInfo)));
+
+const imageAvatar = computed(() => {
+  if (businessInfo.value.avatarBuffer) return `url(${businessInfo.value.avatarBuffer})`;
+  if (businessInfo.value.avatar) return `url(${getImageUrl(businessInfo.value.avatar)})`;
+  return null;
+})
+
+const imageBackground = computed(() => {
+  if (businessInfo.value.backgroundImageBuffer) return `url(${businessInfo.value.backgroundImageBuffer})`;
+  if (businessInfo.value.backgroundImage) return `url(${getImageUrl(businessInfo.value.backgroundImage)})`;
+  return null;
+})
 
 const isLoading = ref(false);
 
@@ -147,7 +174,14 @@ watch(() => businessInfo, () => {
   }
 
   &__background {
-    height: 200px;
+    aspect-ratio: 2/1;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: -1rem;
+    width: 100%;
+    max-width: calc(500px + 2*1rem);
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   &__avatar {
@@ -167,6 +201,8 @@ watch(() => businessInfo, () => {
     text-align: center;
     font-weight: bold;
     font-size: 50px;
+    background-size: cover;
+    background-position: center;
   }
 
   &__text {

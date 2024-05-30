@@ -16,7 +16,7 @@
 
       <div v-else class="products-control__form">
         <base-image-input
-            title="Картинка"
+            title="Картинка для продукта"
             v-model="editProduct.data.imageUrl"
             v-model:buffer="editProduct.data.imageBuffer"
         />

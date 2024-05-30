@@ -5,3 +5,8 @@ export const daysLeft = (future) => {
 
     return Math.ceil(difference / (1000 * 3600 * 24));
 }
+
+export const getImageUrl = url => {
+    const config = useRuntimeConfig();
+    return config.public.CDN_URL + url;
+}

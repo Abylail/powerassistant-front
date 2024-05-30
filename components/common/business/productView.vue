@@ -1,7 +1,7 @@
 <template>
   <div
       class="product-view"
-      :style="{background}"
+      :style="{backgroundImage}"
   >
     <div class="product-view__main-info">
       <div>
@@ -22,6 +22,7 @@
 import {computed} from "vue";
 import BaseIcon from "../../base/BaseIcon";
 import BaseCutText from "../../base/BaseCutText";
+import {getImageUrl} from "~/helpers/methods";
 
 const props = defineProps({
   product: {
@@ -30,7 +31,7 @@ const props = defineProps({
   }
 })
 
-const background = computed(() => props.product.image ? `url(${props.product.image})` : null);
+const backgroundImage = computed(() => props.product.imageUrl ? `url(${getImageUrl(props.product.imageUrl)})` : null);
 </script>
 
 <style lang="scss" scoped>
@@ -39,13 +40,16 @@ const background = computed(() => props.product.image ? `url(${props.product.ima
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
+  //box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
   margin: .5rem 0;
-  padding: 1rem;
-  min-height: 4rem;
+  padding: .5rem 1rem;
+  aspect-ratio: 4/1;
   border-radius: .5rem;
-  background: $color--black;
+  background-color: $color--black;
+  background-size: cover;
+  background-position: center;
   color: $color--gray-light;
+  box-shadow: inset 0px -50px 20px 0px rgba(0,0,0,0.75);
 
   &__main-info {
     align-self: end;
@@ -54,7 +58,7 @@ const background = computed(() => props.product.image ? `url(${props.product.ima
     justify-content: space-between;
     width: 100%;
     color: white;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   &__description {

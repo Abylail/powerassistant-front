@@ -16,6 +16,11 @@
       </div>
 
       <div v-else class="links-control__form">
+        <base-image-input
+            title="Картинка для ссылки"
+            v-model="editLink.data.imageUrl"
+            v-model:buffer="editLink.data.imageBuffer"
+        />
         <base-input
             title="Ссылка (https://...)*"
             v-model="editLink.data.link"

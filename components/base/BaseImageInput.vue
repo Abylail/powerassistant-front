@@ -1,22 +1,21 @@
 <template>
   <div class="base-image-input">
 
-    <div class="base-image-input__box" v-if="props.modelValue || props.buffer">
-      <img class="base-image-input__image" v-if="props.modelValue" :src="getImageUrl(props.modelValue)"/>
-      <img class="base-image-input__image" v-else-if="props.buffer" :src="props.buffer"/>
+    <div class="base-image-input__box" v-if="props.showPreview && (props.modelValue || props.buffer)">
+      <img class="base-image-input__image" v-if="props.buffer" :src="props.buffer"/>
+      <img class="base-image-input__image" v-else-if="props.modelValue" :src="getImageUrl(props.modelValue)"/>
       <base-button type="naked-blue" size="mini" @click.stop="inputElement.click()">Изменить картинку</base-button>
     </div>
 
     <!-- Добавить фото -->
     <div class="base-image-input__box" v-else @click="inputElement.click()">
       <base-loader v-if="isLoading"/>
-      <div v-else>Выберите картинку</div>
+      <div v-else>{{ title }}</div>
     </div>
 
     <div class="base-image-input__error" v-if="error">
       {{ error }}
     </div>
-
 
     <input
         v-show="false"
@@ -31,9 +30,14 @@
 <script setup>
 import {fileToBase64, resizeImage} from "~/helpers/file";
 import {useRuntimeConfig} from "nuxt/app";
+import {getImageUrl} from "~/helpers/methods";
 
 const emit = defineEmits(["update:modelValue", "update:buffer"]);
 const props = defineProps({
+  title: {
+    type: String,
+    default: "Выберите картинку"
+  },
   modelValue: {
     type: String,
     default: null
@@ -50,6 +54,10 @@ const props = defineProps({
     type: Number,
     default: 600
   },
+  showPreview: {
+    type: Boolean,
+    default: true
+  }
 })
 
 const inputElement = ref(null);
@@ -57,7 +65,6 @@ const isLoading = ref(false);
 const error = ref(null);
 
 const config = useRuntimeConfig();
-const getImageUrl = url => config.public.CDN_URL + url;
 
 const inputHandle = async (file) => {
   if (!file) return;
@@ -93,6 +100,7 @@ const inputHandle = async (file) => {
     min-height: 18px;
     color: $color--dark;
     overflow: hidden;
+    cursor: pointer;
   }
 
   &__image {
