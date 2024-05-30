@@ -6,7 +6,7 @@
       class="base-cut-text__show-all"
       v-if="needCut"
       @click.prevent="showAll = true"
-  >{{ $t('show_all') }}</span>
+  >показать полностью</span>
 </template>
 
 <script setup>
@@ -40,8 +40,9 @@ const preparedText = computed(() => {
 .base-cut-text {
 
   &__show-all {
-    color: $color--blue;
+    color: white;
     white-space: nowrap;
+    font-weight: bold;
   }
 
 }

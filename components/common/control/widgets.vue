@@ -50,6 +50,7 @@ const addToggle = widget => {
   &__list {
     display: flex;
     flex-wrap: wrap;
+    gap: .5rem;
   }
 
   &__widget-icon-added {

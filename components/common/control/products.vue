@@ -19,7 +19,7 @@
             title="Название*"
             v-model="editProduct.data.name"
         />
-        <base-input
+        <base-textarea
             title="Описание продукта"
             v-model="editProduct.data.description"
         />
@@ -51,6 +51,7 @@ import {reactive, computed} from "vue";
 import BaseInput from "../../base/BaseInput";
 import BaseIcon from "../../base/BaseIcon";
 import ProductView from "../business/productView";
+import BaseTextarea from "../../base/BaseTextarea";
 
 const emit = defineEmits(["update:modelValue"])
 const props = defineProps({
