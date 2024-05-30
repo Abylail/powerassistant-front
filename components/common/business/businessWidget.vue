@@ -1,8 +1,8 @@
 <template>
-  <div class="business-widget__background" v-if="props.background" />
+  <div class="business-widget__background" :style="{backgroundImage: imageBackground}" />
   <div class="business-widget pretty-box" v-if="props.info">
 
-    <div class="business-widget__avatar">
+    <div class="business-widget__avatar" :style="{backgroundImage: imageAvatar}">
       <span v-if="!props.info.avatar">{{ props.info.title?.[0] }}</span>
     </div>
 
@@ -42,6 +42,7 @@ import {useRouter} from "nuxt/app";
 import Widgets from "../widgets/widgets";
 import LinkView from "./linkView";
 import ProductView from "./productView";
+import {getImageUrl} from "~/helpers/methods";
 
 const props = defineProps({
   info: {
@@ -63,6 +64,16 @@ const shortLinks = computed(() => {
   return links;
 })
 
+const imageAvatar = computed(() => {
+  if (props.info?.avatar) return `url(${getImageUrl(props.info?.avatar)})`;
+  return null;
+})
+
+const imageBackground = computed(() => {
+  if (props.info?.backgroundImage) return `url(${getImageUrl(props.info?.backgroundImage)})`;
+  return null;
+})
+
 const router = useRouter();
 const goChat = () => {
   router.push(`/${props.info.code}/chat`);
@@ -75,7 +86,16 @@ const goChat = () => {
   padding-top: 100px;
 
   &__background {
-    height: 200px;
+    aspect-ratio: 5/3;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: -1rem;
+    width: 100%;
+    max-width: calc(500px + 2*1rem);
+    margin-left: auto !important;
+    margin-right: auto !important;
+    position: sticky;
+    top: 0;
   }
 
   &__avatar {
@@ -95,6 +115,8 @@ const goChat = () => {
     text-align: center;
     font-weight: bold;
     font-size: 50px;
+    background-size: cover;
+    background-position: center;
   }
 
   &__title {

@@ -22,6 +22,8 @@ useSeoMeta({
 })
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.business-info {
+  padding-bottom: 4rem;
+}
 </style>

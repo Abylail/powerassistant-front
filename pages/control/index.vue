@@ -18,20 +18,6 @@
         <span v-if="!businessInfo.avatar && !businessInfo.avatarBuffer">{{ businessInfo.title?.[0] || "?" }}</span>
       </div>
 
-      <base-image-input
-          title="Сменить главную картинку"
-          v-model="businessInfo.avatar"
-          v-model:buffer="businessInfo.avatarBuffer"
-          :show-preview="false"
-      />
-
-      <base-image-input
-          title="Сменить заднюю картинку"
-          v-model="businessInfo.backgroundImage"
-          v-model:buffer="businessInfo.backgroundImageBuffer"
-          :show-preview="false"
-      />
-
       <base-input
           title="Название страницы*"
           v-model="businessInfo.title"
@@ -58,6 +44,22 @@
       <base-input
           title="Текст кнопки (переход в чат)"
           v-model="businessInfo.chatButtonLabel"
+      />
+
+      <div class="control-page__subtitle">Картинки</div>
+
+      <base-image-input
+          title="Сменить главную картинку"
+          v-model="businessInfo.avatar"
+          v-model:buffer="businessInfo.avatarBuffer"
+          :show-preview="false"
+      />
+
+      <base-image-input
+          title="Сменить заднюю картинку"
+          v-model="businessInfo.backgroundImage"
+          v-model:buffer="businessInfo.backgroundImageBuffer"
+          :show-preview="false"
       />
 
       <div class="control-page__subtitle">Соц сети</div>
@@ -174,7 +176,7 @@ watch(() => businessInfo, () => {
   }
 
   &__background {
-    aspect-ratio: 2/1;
+    aspect-ratio: 5/3;
     background-size: cover;
     background-position: center;
     margin-bottom: -1rem;
@@ -239,6 +241,10 @@ watch(() => businessInfo, () => {
     &--active {
       transform: translate(-50%, -1.5rem);
     }
+  }
+
+  &__divider {
+    padding: .5rem;
   }
 
   &__loader-wrapper {

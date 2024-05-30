@@ -48,7 +48,7 @@ const props = defineProps({
   },
   accept: {
     type: String,
-    default: "image/png, image/gif, image/jpeg"
+    default: "image/png, image/jpeg"
   },
   maxWidth: {
     type: Number,
