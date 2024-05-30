@@ -5,6 +5,10 @@
       <div class="control-page__loader"/>
     </div>
 
+    <div class="control-page__save" :class="{'control-page__save--active': canSave}">
+      <base-button type="default-light" full-width @click="saveInfo()">Сохранить</base-button>
+    </div>
+
     <div class="control-page__background"/>
 
 
@@ -117,16 +121,16 @@ const businessInfo = ref(JSON.parse(JSON.stringify(businessStore.getInfo)));
 
 const isLoading = ref(false);
 
+const canSave = ref(false);
 const saveInfo = async () => {
+  canSave.value = false;
   isLoading.value = true;
   await businessStore.updateBusiness(businessInfo.value);
   isLoading.value = false;
 }
 
-let timeout = null;
 watch(() => businessInfo, () => {
-  clearTimeout(timeout);
-  timeout = setTimeout(() => saveInfo(), 2000)
+  canSave.value = true;
 }, {
   deep: true
 })
@@ -181,6 +185,24 @@ watch(() => businessInfo, () => {
   a {
     display: block;
     color: $color--blue;
+  }
+
+  &__save {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 4rem);
+    height: 2.5rem;
+    width: 15rem;
+    z-index: 10;
+    transition: .15s;
+
+    &--active {
+      transform: translate(-50%, -1.5rem);
+    }
   }
 
   &__loader-wrapper {

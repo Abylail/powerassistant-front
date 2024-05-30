@@ -27,6 +27,7 @@ const actions = {
         if (!err) {
             this.userInfo = body;
             cookie.userToken.set(body.token);
+            await new Promise(resolve => setTimeout(resolve, 0));
             await this.fetchBusiness();
         }
         return !err;

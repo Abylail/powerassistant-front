@@ -2,7 +2,7 @@
   <div class="login">
 
     <h1 class="login__title">Вход</h1>
-    <div class="pretty-box">
+    <div class="pretty-box" @keyup.enter="goControl()">
       <base-input
           title="Ваш сотовый номер"
           v-model="authForm.phone"
@@ -70,6 +70,7 @@ const isLoading = ref(false);
 const canSubmit = computed(() => phoneRawValidation(authForm.value.phone) && authForm.value.password);
 
 const goControl = async () => {
+  if (!canSubmit.value && !isLoading.value) return
   error.value = null;
   isLoading.value = true;
   const isSuccess = await authStore.login({phone: phonePreparing(authForm.value.phone), password: authForm.value.password});
