@@ -12,8 +12,8 @@
 useSeoMeta({
   title: "Power Assistant",
   ogTitle: "Power Assistant",
-  description: "",
-  ogDescription: "",
+  description: "ИИ чат для вашего бизнеса за минуту",
+  ogDescription: "ИИ чат для вашего бизнеса за минуту",
 })
 </script>
 
