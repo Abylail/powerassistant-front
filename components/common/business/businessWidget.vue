@@ -1,5 +1,5 @@
 <template>
-  <div class="business-widget__background" :style="{backgroundImage: imageBackground}" />
+  <div class="business-widget__background" v-if="props.background" :style="{backgroundImage: imageBackground}" />
   <div class="business-widget pretty-box" v-if="props.info">
 
     <div class="business-widget__avatar" :style="{backgroundImage: imageAvatar}">
